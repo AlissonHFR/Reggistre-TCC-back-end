@@ -5,7 +5,6 @@ import java.util.List;
 import br.fai.reggistre.model.entities.Movimentacao;
 
 
-
 public interface MovementDao {
 	
     List<Movimentacao> readAll();

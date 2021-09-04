@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import br.fai.reggistre.api.service.UserService;
+import br.fai.reggistre.api.service.PhysicalPersonService;
 import br.fai.reggistre.model.entities.PessoaFisica;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/user")
 @CrossOrigin(origins = "*")
-public class UserRestController {
+public class PhysicalPersonRestController {
 	
 	@Autowired
-	private UserService userService;
+	private PhysicalPersonService userService;
 
 	@GetMapping("/minha-primeira-requisicao")
 	public ResponseEntity<String> minhaPrimeiraRequisicao() {

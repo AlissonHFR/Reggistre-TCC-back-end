@@ -20,7 +20,7 @@
 			<groupId>br.fai.reggistre.model</groupId>
 			<artifactId>reggistre-model</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		</dependency>	
 
 
 		<dependency>

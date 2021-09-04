@@ -1,13 +1,12 @@
-package br.fai.reggistre.api.service;
+package br.fai.reggistre.db.dao;
 
 import java.util.List;
 
-
 import br.fai.reggistre.model.entities.PessoaFisica;
 
-public interface UserService {
-
-	List<PessoaFisica> readAll();
+public interface PhysicalPersonDao {
+	
+List<PessoaFisica> readAll();
 	
 	Long create(PessoaFisica entity);
 		

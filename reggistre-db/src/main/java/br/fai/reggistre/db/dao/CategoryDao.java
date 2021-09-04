@@ -5,7 +5,6 @@ import java.util.List;
 import br.fai.reggistre.model.entities.Categoria;
 
 
-
 public interface CategoryDao {
 
 	List<Categoria> readAll();

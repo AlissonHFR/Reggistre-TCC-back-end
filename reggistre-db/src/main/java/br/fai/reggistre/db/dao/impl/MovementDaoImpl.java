@@ -31,10 +31,10 @@ public class MovementDaoImpl implements MovementDao{
 		try {
 			
 			connection = ConnectionFactory.getConnection();
-			String sql = "select m.id, m.nome as m_nome, m.categoria_id, m.data, m.descricao, m.pessoa_fisica_id, " +
-					 " m.tipo_movimentacao, m.valor, c.nome as c_nome, c.tipo as c_tipo from movimentacao m " + 
+			String sql = "select m.id, m.nome as m_nome, m.id_categoria, m.data, m.descricao, m.id_pessoa_fisica, " +
+					 " m.tipo_movimentacao, m.valor, c.nome as c_nome, from movimentacao m " + 
 					" inner join categoria c on " + 
-					" m.categoria_id = c.id ";
+					" m.id_categoria = c.id ";
 			
 			preparedStatement = connection.prepareStatement(sql);
 			
@@ -45,16 +45,15 @@ public class MovementDaoImpl implements MovementDao{
 				
 				movimentacao.setId(resultSet.getLong("id"));
 				movimentacao.setNome(resultSet.getString("m_nome"));
-				movimentacao.setCategoriaId(resultSet.getLong("categoria_id"));
-				movimentacao.setData(resultSet.getDate("data"));
+				movimentacao.setIdCategoria(resultSet.getLong("id_categoria"));
+				movimentacao.setData(resultSet.getTimestamp("data"));
 				movimentacao.setDescricao(resultSet.getString("descricao"));
-				movimentacao.setPessoaFisicaId(resultSet.getLong("pessoa_fisica_id"));
+				movimentacao.setIdPessoaFisica(resultSet.getLong("id_pessoa_fisica"));
 				movimentacao.setTipoMovimentacao(resultSet.getString("tipo_movimentacao"));
-				movimentacao.setValor(resultSet.getDouble("valor"));
+				movimentacao.setValor(resultSet.getFloat("valor"));
 				movimentacao.setCategoria(new Categoria());
 				
 				movimentacao.getCategoria().setNome(resultSet.getString("c_nome"));
-				movimentacao.getCategoria().setTipo(resultSet.getString("c_tipo"));
 				
 				
 				
@@ -83,7 +82,7 @@ public class MovementDaoImpl implements MovementDao{
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		
-		String sql = "INSERT INTO movimentacao (nome, categoria_id, data, descricao, pessoa_fisica_id, tipo_movimentacao, valor) ";
+		String sql = "INSERT INTO movimentacao (nome, id_categoria, data, descricao, id_pessoa_fisica, tipo_movimentacao, valor) ";
 		sql+= " VALUES (?, ?, ?, ?, ?, ?, ?); ";
 		
 		Long id = Long.valueOf(0);
@@ -98,12 +97,12 @@ public class MovementDaoImpl implements MovementDao{
 			
 			
 			preparedStatement.setString(1, entity.getNome());
-			preparedStatement.setLong(2, entity.getCategoriaId());
-			preparedStatement.setDate(3, entity.getData());
+			preparedStatement.setLong(2, entity.getIdCategoria());
+			preparedStatement.setTimestamp(3, entity.getData());
 			preparedStatement.setString(4, entity.getDescricao());
-			preparedStatement.setLong(5, entity.getPessoaFisicaId());
+			preparedStatement.setLong(5, entity.getIdPessoaFisica());
 			preparedStatement.setString(6, entity.getTipoMovimentacao());
-			preparedStatement.setDouble(7, entity.getValor());
+			preparedStatement.setFloat(7, entity.getValor());
 			
 			preparedStatement.execute();
 			resultSet = preparedStatement.getGeneratedKeys();
@@ -154,12 +153,12 @@ public class MovementDaoImpl implements MovementDao{
 				movimentacao = new Movimentacao();
 				movimentacao.setId(resultSet.getLong("id"));
 				movimentacao.setNome(resultSet.getString("nome"));
-				movimentacao.setCategoriaId(resultSet.getLong("categoria_id"));
-				movimentacao.setData(resultSet.getDate("data"));
+				movimentacao.setIdCategoria(resultSet.getLong("id_categoria"));
+				movimentacao.setData(resultSet.getTimestamp("data"));
 				movimentacao.setDescricao(resultSet.getString("descricao"));
-				movimentacao.setPessoaFisicaId(resultSet.getLong("pessoa_fisica_id"));
+				movimentacao.setIdPessoaFisica(resultSet.getLong("id_pessoa_fisica"));
 				movimentacao.setTipoMovimentacao(resultSet.getString("tipo_movimentacao"));
-				movimentacao.setValor(resultSet.getDouble("valor"));
+				movimentacao.setValor(resultSet.getFloat("valor"));
 			}
 			
 		} catch (Exception e) {
@@ -176,7 +175,7 @@ public class MovementDaoImpl implements MovementDao{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String sql = "UPDATE movimentacao SET nome = ?, categoria_id = ?, data = ?, descricao = ?, tipo_movimentacao = ?, valor = ? ";
+		String sql = "UPDATE movimentacao SET nome = ?, id_categoria = ?, data = ?, descricao = ?, tipo_movimentacao = ?, valor = ? ";
 		sql += " WHERE id = ? ; ";
 		
 		try {
@@ -185,11 +184,11 @@ public class MovementDaoImpl implements MovementDao{
 			
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, entity.getNome());
-			preparedStatement.setLong(2, entity.getCategoriaId());
-			preparedStatement.setDate(3, entity.getData());
+			preparedStatement.setLong(2, entity.getIdCategoria());
+			preparedStatement.setTimestamp(3, entity.getData());
 			preparedStatement.setString(4, entity.getDescricao());
 			preparedStatement.setString(5, entity.getTipoMovimentacao());
-			preparedStatement.setDouble(6, entity.getValor());
+			preparedStatement.setFloat(6, entity.getValor());
 			preparedStatement.setLong(7, entity.getId());
 			
 			preparedStatement.execute();
