@@ -8,10 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import br.fai.reggistre.db.connection.ConnectionFactory;
 import br.fai.reggistre.db.dao.AccountTypeDao;
 import br.fai.reggistre.model.entities.TipoConta;
 
+@Repository
 public class AccountTypeDaoImpl implements AccountTypeDao{
 
 	@Override
@@ -140,7 +143,7 @@ public class AccountTypeDaoImpl implements AccountTypeDao{
 			
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, entity.getNome());
-			preparedStatement.setLong(4, entity.getId());
+			preparedStatement.setLong(2, entity.getId());
 			
 			preparedStatement.execute();
 			connection.commit();

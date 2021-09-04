@@ -8,10 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import br.fai.reggistre.db.connection.ConnectionFactory;
 import br.fai.reggistre.db.dao.AwardDao;
 import br.fai.reggistre.model.entities.Premio;
 
+@Repository
 public class AwardDaoImpl implements AwardDao{
 
 	@Override

@@ -32,7 +32,7 @@ public class MovementDaoImpl implements MovementDao{
 			
 			connection = ConnectionFactory.getConnection();
 			String sql = "select m.id, m.nome as m_nome, m.id_categoria, m.data, m.descricao, m.id_pessoa_fisica, " +
-					 " m.tipo_movimentacao, m.valor, c.nome as c_nome, from movimentacao m " + 
+					 " m.tipo_movimentacao, m.valor, c.nome as c_nome from movimentacao m " + 
 					" inner join categoria c on " + 
 					" m.id_categoria = c.id ";
 			

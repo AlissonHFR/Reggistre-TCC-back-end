@@ -3,11 +3,13 @@ package br.fai.reggistre.api.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.fai.reggistre.api.service.AwardService;
 import br.fai.reggistre.db.dao.AwardDao;
 import br.fai.reggistre.model.entities.Premio;
 
+@Service
 public class AwardServiceImpl implements AwardService{
 	
 	@Autowired

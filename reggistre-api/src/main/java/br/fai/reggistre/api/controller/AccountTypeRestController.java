@@ -20,7 +20,7 @@ import br.fai.reggistre.model.entities.TipoConta;
 
 
 @RestController
-@RequestMapping("/api/v1/account_type")
+@RequestMapping("/api/v1/account-type")
 @CrossOrigin(origins = "*")
 public class AccountTypeRestController {
 	
