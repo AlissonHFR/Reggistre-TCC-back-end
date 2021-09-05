@@ -37,9 +37,7 @@ public class CategoryDaoImpl implements CategoryDao{
 				Categoria categoria = new Categoria();
 				categoria.setId(resultSet.getLong("id"));
 				categoria.setNome(resultSet.getString("nome"));
-				categoria.setPessoaFisicaId(resultSet.getLong("pessoa_fisica_id"));
-				categoria.setTipo(resultSet.getString("tipo"));
-				categoria.setIcone(resultSet.getInt("icone"));
+				categoria.setIdPessoaFisica(resultSet.getLong("id_pessoa_fisica"));
 				
 				categoriaList.add(categoria);
 			}
@@ -61,8 +59,8 @@ public class CategoryDaoImpl implements CategoryDao{
 		ResultSet resultSet = null;
 		Long id = Long.valueOf(0);
 		
-		String sql = "INSERT INTO categoria (nome, pessoa_fisica_id, tipo, icone) ";
-		sql += " VALUES (?, ?, ?, ?); " ; 
+		String sql = "INSERT INTO categoria (nome, id_pessoa_fisica) ";
+		sql += " VALUES (?, ?); " ; 
 		
 		try {
 			connection = ConnectionFactory.getConnection();
@@ -71,9 +69,7 @@ public class CategoryDaoImpl implements CategoryDao{
 			preparedStatement  = connection.prepareStatement(sql , Statement.RETURN_GENERATED_KEYS);
 			
 			preparedStatement.setString(1, entity.getNome());
-			preparedStatement.setLong(2, entity.getPessoaFisicaId());
-			preparedStatement.setString(3, entity.getTipo());
-			preparedStatement.setInt(4, entity.getIcone());
+			preparedStatement.setLong(2, entity.getIdPessoaFisica());
 			
 			preparedStatement.execute();
 			resultSet = preparedStatement.getGeneratedKeys();
@@ -121,9 +117,7 @@ public class CategoryDaoImpl implements CategoryDao{
 				categoria = new Categoria();
 				categoria.setId(resultSet.getLong("id"));
 				categoria.setNome(resultSet.getString("nome"));
-				categoria.setPessoaFisicaId(resultSet.getLong("pessoa_fisica_id"));
-				categoria.setTipo(resultSet.getString("tipo"));
-				categoria.setIcone(resultSet.getInt("icone"));
+				categoria.setIdPessoaFisica(resultSet.getLong("id_pessoa_fisica"));
 				
 			}
 			
@@ -142,7 +136,7 @@ public class CategoryDaoImpl implements CategoryDao{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String sql = "UPDATE categoria SET nome = ?, tipo = ?, icone = ? ";
+		String sql = "UPDATE categoria SET nome = ?, id_pessoa_fisica = ? ";
 		sql += " WHERE id = ? ; ";
 		
 		try {
@@ -151,9 +145,8 @@ public class CategoryDaoImpl implements CategoryDao{
 			
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, entity.getNome());
-			preparedStatement.setString(2, entity.getTipo());
-			preparedStatement.setInt(3, entity.getIcone());
-			preparedStatement.setLong(4, entity.getId());
+			preparedStatement.setLong(2, entity.getIdPessoaFisica());
+			preparedStatement.setLong(3, entity.getId());
 			
 			preparedStatement.execute();
 			connection.commit();

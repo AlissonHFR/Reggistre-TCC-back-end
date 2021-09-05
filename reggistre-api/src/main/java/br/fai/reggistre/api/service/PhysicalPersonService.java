@@ -1,11 +1,12 @@
-package br.fai.reggistre.db.dao;
+package br.fai.reggistre.api.service;
 
 import java.util.List;
 
+
 import br.fai.reggistre.model.entities.PessoaFisica;
 
-public interface UserDao {
-	
+public interface PhysicalPersonService {
+
 	List<PessoaFisica> readAll();
 	
 	Long create(PessoaFisica entity);
@@ -15,6 +16,7 @@ public interface UserDao {
 	boolean update(PessoaFisica entity);
 	
 	boolean deleteById(Long id);
-
+	
 	PessoaFisica readByLogin(String nomeUsuario, String senha);
+
 }
